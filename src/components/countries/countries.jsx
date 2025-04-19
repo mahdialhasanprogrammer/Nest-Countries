@@ -1,4 +1,4 @@
-import { useMemo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Country from "../country/country";
 import "./countries.css";
 
@@ -17,7 +17,7 @@ const Countries = () => {
     setMarkCountries(newMarkCountries);
   };
 
-  const displayedCountries = useMemo(() => {
+  const displayedCountries = () => {
     return isMoreCountries
       ? countries.map((country) => (
           <Country key={country.cca3} country={country} />
@@ -31,7 +31,7 @@ const Countries = () => {
               country={country}
             />
           ));
-  }, [countries, isMoreCountries]);
+  };
 
   return (
     <div>
@@ -48,7 +48,7 @@ const Countries = () => {
           return <li key={country.cca3}>{country.name.common}</li>;
         })}
       </ul>
-      <div className="countries-container">{displayedCountries}</div>
+      <div className="countries-container">{displayedCountries()}</div>
     </div>
   );
 };
